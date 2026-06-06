@@ -1,106 +1,73 @@
 # Dijkstra's Algorithm Visualization (JavaScript + D3)
-<img width="1130" height="1260" alt="image" src="https://github.com/user-attachments/assets/a56714c5-6003-4c7f-b2d0-ff62206f58de" />
-An interactive visualization of Dijkstra’s shortest path algorithm implemented in JavaScript with D3.js.
+
+An interactive visualization of **Dijkstra's shortest-path algorithm** implemented in JavaScript with D3.js.
+
+![Demo](Dijkstra_demo.gif)
 
 This project demonstrates graph modeling, priority queue implementation, and step-by-step shortest path computation with animated visualization.
 
 ---
 
-## Overview
+## How Dijkstra's Algorithm Works
 
-This application:
+Dijkstra's algorithm finds the **shortest path** between two nodes in a weighted graph where all edge weights are non-negative. It follows these steps:
 
-- Models a weighted graph using node and edge data structures
-- Implements Dijkstra’s shortest path algorithm from scratch
-- Uses a custom priority queue for distance ordering
-- Animates node visits and edge relaxations
-- Allows dynamic edge weight updates
-- Supports random weight generation
+1. Set the distance of the **start node** to `0` and all other nodes to `∞`
+2. Use a **priority queue** to always process the node with the smallest known distance next
+3. For each visited node, check all its neighbors — if a shorter path is found, update the neighbor's distance (**edge relaxation**)
+4. Repeat until the **destination node** is reached
+5. **Backtrack** through recorded predecessors to reconstruct the shortest path
 
-Users can select a start node and end node to compute and visualize the shortest path.
+**Time Complexity:** O(V²) with an array-based priority queue (as used in this project), or O((V + E) log V) with a binary min-heap.
 
 ---
 
 ## Features
 
 ### Graph Representation
-- Nodes stored as coordinate objects with unique IDs
-- Edges represented as weighted connections
+- Nodes stored as coordinate objects with unique IDs (A – P, 4×4 grid)
+- Edges represented as weighted connections (24 edges total)
 - Undirected grid-style graph layout
 
 ### Dijkstra Implementation
 - Distance table initialization
 - Predecessor tracking for path reconstruction
-- Custom PriorityQueue class
+- Custom `PriorityQueue` class (array-based, sorted insertion)
 - Edge relaxation logic
 - Shortest path reconstruction using `prev` map
 
 ### Visualization
-- D3-based rendering of:
-  - Nodes (circles)
-  - Edges (lines)
-  - Edge weights (labels)
+- D3-based rendering of nodes (circles), edges (lines), and edge weight labels
 - Animated traversal:
-  - Visited nodes highlighted in yellow
-  - Relaxed edges highlighted in green
-  - Final shortest path highlighted in purple
+  - **Yellow** — node currently being visited
+  - **Green** — edge being relaxed (evaluated for a shorter path)
+  - **Purple** — the final shortest path
 
 ### Interactive Controls
-- Select start and end nodes
+- Select any start and end node from dropdowns
 - Modify individual edge weights
-- Randomize all edge weights
+- Randomize all edge weights with one click
 - Re-run algorithm dynamically
 
 ---
 
-## How It Works
+## How to Run
 
-1. Graph is rendered using D3.
-2. User selects start and end nodes.
-3. Dijkstra’s algorithm computes shortest distances.
-4. Nodes and edges are queued for animation.
-5. Final path is reconstructed and highlighted.
+No installation or server required. Simply open `index.html` in your browser:
 
----
-
-## Example Usage
-
-- Select Start: A  
-- Select End: P  
-- Click "Run Dijkstra"
-- Observe traversal and final path highlight.
-
-You can also:
-- Update edge weights manually
-- Randomize weights and re-run the algorithm
-
----
-
-## Technical Highlights
-
-- Custom priority queue implementation
-- Graph traversal and path reconstruction
-- State tracking using distance and predecessor maps
-- DOM manipulation and SVG rendering with D3.js
-- Animated algorithm visualization using timed transitions
+```bash
+open index.html
+```
 
 ---
 
 ## Tech Stack
 
-- JavaScript (ES6)
-- D3.js
-- HTML5 / SVG
-
----
-
-## Skills Demonstrated
-
-- Graph data structures
-- Shortest path algorithms
-- Priority queue implementation
-- Algorithm visualization
-- Interactive UI controls
+| Technology | Purpose |
+|---|---|
+| [D3.js v6](https://d3js.org/) | SVG graph rendering and animation |
+| Vanilla JavaScript (ES6) | Algorithm logic, priority queue, DOM interaction |
+| HTML5 / CSS | Layout and controls |
 
 ---
 
